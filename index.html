@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lucy's Barcelona Birthday 🎉</title>
+    <!-- Include Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:400,700&display=swap">
+    <style>
+        /* Reset default margins and paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Work Sans', Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        /* Landing Page Styles */
+        .landing-page {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(to right, #FF9A8B, #FF6A88, #FF99AC);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+        .landing-page h1 {
+            font-size: 72px;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .landing-page p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        .landing-page button {
+            background-color: #fff;
+            color: #FF6A88;
+            font-size: 24px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .landing-page button:hover {
+            background-color: #ffe5e0;
+            transform: scale(1.05);
+        }
+        /* Main Content Styles */
+        .main-content {
+            display: none;
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        h2.main-title {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 40px;
+            font-weight: normal;
+            letter-spacing: 2px;
+            width: 100%;
+            color: #FF6A88;
+        }
+        .accordion {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+        }
+        .accordion summary {
+            font-size: 24px;
+            font-weight: bold;
+            padding: 15px 20px;
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+            color: #fff;
+            border-radius: 25px;
+            margin-bottom: 10px;
+            transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+        }
+        .accordion summary:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transform: scale(1.02);
+        }
+        .accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        .accordion details[open] summary::after {
+            content: "–";
+            position: absolute;
+            right: 20px;
+            font-size: 24px;
+            line-height: 24px;
+        }
+        .accordion summary::after {
+            content: "+";
+            position: absolute;
+            right: 20px;
+            font-size: 24px;
+            line-height: 24px;
+        }
+        .accordion details {
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-top: none;
+            border-radius: 0 0 25px 25px;
+        }
+        .activity {
+            margin: 20px 0;
+        }
+        .activity-time {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #FF6A88;
+        }
+        .emoji {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        .notes {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            background-color: #FFE5E0;
+            padding: 20px;
+            border-radius: 25px;
+        }
+        .notes h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #FF6A88;
+        }
+        .notes ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .notes li {
+            margin: 5px 0;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .notes li::before {
+            content: "• ";
+            color: #FF6A88;
+        }
+        summary, p, li {
+            text-align: left;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 20px 0;
+        }
+        /* Day-Specific Styles */
+        /* Day 1 */
+        #day1 summary {
+            background: linear-gradient(to right, #FF9A8B, #FF6A88, #FF99AC);
+        }
+        #day1 summary:hover {
+            background: linear-gradient(to right, #FF6A88, #FF99AC, #FF6A88);
+        }
+        /* Day 2 */
+        #day2 summary {
+            background: linear-gradient(to right, #FFAF9F, #FF7E89, #FFA1B5);
+        }
+        #day2 summary:hover {
+            background: linear-gradient(to right, #FF7E89, #FFA1B5, #FF7E89);
+        }
+        /* Day 3 */
+        #day3 summary {
+            background: linear-gradient(to right, #FFC4B2, #FF8E8B, #FFB1BE);
+        }
+        #day3 summary:hover {
+            background: linear-gradient(to right, #FF8E8B, #FFB1BE, #FF8E8B);
+        }
+        /* Day 4 */
+        #day4 summary {
+            background: linear-gradient(to right, #FFD8C5, #FF9E8E, #FFC1C7);
+        }
+        #day4 summary:hover {
+            background: linear-gradient(to right, #FF9E8E, #FFC1C7, #FF9E8E);
+        }
+        /* Additional Notes */
+        #notes summary {
+            background: linear-gradient(to right, #FFB3B3, #FF8080, #FF6666);
+            color: #fff;
+        }
+        #notes summary:hover {
+            background: linear-gradient(to right, #FF8080, #FF6666, #FF8080);
+        }
+        /* Map Container */
+        .map-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 25px;
+            margin-top: 20px;
+        }
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 25px;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .landing-page h1 {
+                font-size: 48px;
+            }
+            .landing-page p {
+                font-size: 20px;
+            }
+            .landing-page button {
+                font-size: 20px;
+                padding: 12px 25px;
+            }
+            h2.main-title {
+                font-size: 36px;
+            }
+            .accordion summary {
+                font-size: 20px;
+            }
+            .activity-time {
+                font-size: 16px;
+            }
+            .notes h2 {
+                font-size: 20px;
+            }
+            .notes li {
+                font-size: 14px;
+            }
+        }
+        @media (max-width: 480px) {
+            .landing-page h1 {
+                font-size: 36px;
+            }
+            .landing-page p {
+                font-size: 18px;
+            }
+            .landing-page button {
+                font-size: 18px;
+                padding: 10px 20px;
+            }
+            h2.main-title {
+                font-size: 28px;
+            }
+            .accordion summary {
+                font-size: 18px;
+            }
+            .activity-time {
+                font-size: 14px;
+            }
+            .notes h2 {
+                font-size: 18px;
+            }
+            .notes li {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Landing Page -->
+<div class="landing-page">
+    <h1>Lucy's Barcelona Birthday 🎉</h1>
+    <p>Welcome to the ultimate Barcelona itinerary!</p>
+    <button onclick="enterSite()">Enter</button>
+</div>
+
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+    <h2 class="main-title">Lucy's Barcelona Birthday 🎉</h2>
+    <!-- Friday -->
+    <details class="accordion" id="day1" open>
+        <summary>Friday, October 11th</summary>
+        <!-- [Your existing content for Day 1 goes here] -->
+        <!-- For brevity, the day's content is omitted in this example -->
+    </details>
+    
+    <!-- Saturday (Now Sunday's Activities) -->
+    <details class="accordion" id="day2">
+        <summary>Saturday, October 12th</summary>
+        <!-- [Your existing content for Day 2 goes here] -->
+    </details>
+    
+    <!-- Sunday (Now Saturday's Activities with El Nacional Booking) -->
+    <details class="accordion" id="day3">
+        <summary>Sunday, October 13th</summary>
+        <!-- [Your existing content for Day 3 goes here] -->
+    </details>
+    
+    <!-- Monday -->
+    <details class="accordion" id="day4">
+        <summary>Monday, October 14th</summary>
+        <!-- [Your existing content for Day 4 goes here] -->
+    </details>
+    
+    <!-- Additional Notes -->
+    <details class="accordion" id="notes">
+        <summary>Additional Notes</summary>
+        <!-- [Your existing content for Additional Notes goes here] -->
+    </details>
+</div>
+
+<script>
+    function enterSite() {
+        document.querySelector('.landing-page').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        window.scrollTo(0, 0);
+    }
+</script>
+
+</body>
+</html>
